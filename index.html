@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecolX - شحن الألعاب والتطبيقات</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-cyan: #00d2ff;
+      --neon-purple: #7b2ff7;
+      --neon-pink: #ff2d95;
+      --neon-green: #00e676;
+      --neon-gold: #ffd700;
+      --dark-bg: #0a0a1a;
+      --card-bg: rgba(255,255,255,0.04);
+      --card-border: rgba(255,255,255,0.08);
+      --glass-bg: rgba(15,15,35,0.85);
+      --gradient-main: linear-gradient(135deg, #00d2ff 0%, #7b2ff7 50%, #ff2d95 100%);
+      --gradient-card: linear-gradient(135deg, rgba(0,210,255,0.1) 0%, rgba(123,47,247,0.1) 100%);
+      --gradient-usd: linear-gradient(135deg, #00e676 0%, #00bfa5 100%);
+      --gradient-syp: linear-gradient(135deg, #ff2d95 0%, #ff6b35 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--dark-bg);
+      color: #e0e0e0;
+      font-family: 'Tajawal', 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ========== Animated Background ========== */
+    #particles-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-gradient-orbs {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      animation: orbFloat 20s ease-in-out infinite;
+    }
+
+    .orb-1 { width: 400px; height: 400px; background: var(--neon-cyan); top: -100px; right: -100px; animation-delay: 0s; }
+    .orb-2 { width: 350px; height: 350px; background: var(--neon-purple); bottom: -50px; left: -50px; animation-delay: -7s; }
+    .orb-3 { width: 300px; height: 300px; background: var(--neon-pink); top: 50%; left: 40%; animation-delay: -14s; }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(50px, -80px) scale(1.1); }
+      50% { transform: translate(-30px, 50px) scale(0.9); }
+      75% { transform: translate(80px, 30px) scale(1.05); }
+    }
+
+    /* ========== Navbar ========== */
+    .navbar-custom {
+      background: rgba(10,10,26,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s;
+    }
+
+    .navbar-custom.scrolled {
+      padding: 8px 0;
+      background: rgba(10,10,26,0.95);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+
+    .brand-logo {
+      font-weight: 900;
+      font-size: 2rem;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo i {
+      -webkit-text-fill-color: var(--neon-cyan);
+      font-size: 1.6rem;
+      animation: gamepadPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes gamepadPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15) rotate(5deg); }
+    }
+
+    .social-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      color: #aaa;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+    }
+
+    .social-nav a:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      background: rgba(0,210,255,0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,210,255,0.2);
+    }
+
+    /* ========== Hero Section ========== */
+    .hero-section {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 50px 20px 30px;
+    }
+
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .hero-section h1 span {
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-section p {
+      color: #888;
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ========== Tabs ========== */
+    .custom-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 30px auto;
+      background: rgba(255,255,255,0.03);
+      border-radius: 16px;
+      padding: 6px;
+      max-width: 400px;
+      border: 1px solid var(--card-border);
+    }
+
+    .custom-tab {
+      flex: 1;
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: none;
+      background: transparent;
+      color: #888;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Tajawal', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .custom-tab.active {
+      background: var(--gradient-main);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(0,210,255,0.3);
+    }
+
+    .custom-tab:hover:not(.active) {
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* ========== Search Bar ========== */
+    .search-container {
+      max-width: 500px;
+      margin: 0 auto 30px;
+      position: relative;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 14px 20px 14px 50px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      color: #fff;
+      font-size: 1rem;
+      font-family: 'Tajawal', sans-serif;
+      transition: all 0.3s;
+      outline: none;
+    }
+
+    .search-container input:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 20px rgba(0,210,255,0.15);
+    }
+
+    .search-container input::placeholder { color: #666; }
+
+    .search-container i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      transition: color 0.3s;
+    }
+
+    .search-container input:focus ~ i { color: var(--neon-cyan); }
+
+    /* ========== Category Grid ========== */
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .category-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      width: 160px;
+      height: 160px;
+      padding: 18px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--gradient-card);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .category-card:hover::before { opacity: 1; }
+
+    .category-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 20px 40px rgba(0,210,255,0.15), 0 0 60px rgba(0,210,255,0.05);
+    }
+
+    .category-card .card-icon-wrap {
+      width: 60px; height: 60px;
+      border-radius: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s;
+      font-size: 1.6rem;
+    }
+
+    .category-card:hover .card-icon-wrap { transform: scale(1.1); }
+
+    .category-card span {
+      font-weight: 800;
+      font-size: 1rem;
+      position: relative;
+      z-index: 1;
+      line-height: 1.3;
+    }
+
+    .category-card .card-badge {
+      position: absolute;
+      top: 8px; left: 8px;
+      background: var(--neon-pink);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      z-index: 2;
+    }
+
+    /* ========== App Items Grid ========== */
+    .apps-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      width: 140px;
+      height: 140px;
+      padding: 14px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--gradient-card);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .app-card:hover::before { opacity: 1; }
+
+    .app-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: var(--neon-purple);
+      box-shadow: 0 20px 40px rgba(123,47,247,0.15), 0 0 60px rgba(123,47,247,0.05);
+    }
+
+    .app-card .app-card-name {
+      font-weight: 800;
+      font-size: 0.82rem;
+      position: relative;
+      z-index: 1;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .app-card .app-card-price {
+      font-weight: 800;
+      color: var(--neon-cyan);
+      font-size: 0.8rem;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-card .app-card-syp {
+      color: var(--neon-pink);
+      font-size: 0.7rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-card .app-card-unavail {
+      color: #ff4757;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ========== Modals ========== */
+    .modal-content {
+      background: linear-gradient(145deg, #12122a, #1a1a35);
+      color: #fff;
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .modal-header { border-bottom: 1px solid var(--card-border); padding: 20px 24px; }
+    .modal-header .modal-title { font-weight: 800; font-size: 1.2rem; }
+    .modal-body { padding: 24px; }
+    .modal-footer { border-top: 1px solid var(--card-border); padding: 16px 24px; }
+
+    .btn-close-white { filter: invert(1); opacity: 0.5; transition: opacity 0.3s; }
+    .btn-close-white:hover { opacity: 1; }
+
+    /* ========== Currency Toggle ========== */
+    .currency-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin: 0 auto 20px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 4px;
+      border: 1px solid var(--card-border);
+      max-width: 280px;
+    }
+
+    .currency-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: none;
+      background: transparent;
+      color: #888;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Tajawal', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .currency-btn.active-usd {
+      background: var(--gradient-usd);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0,230,118,0.3);
+    }
+
+    .currency-btn.active-syp {
+      background: var(--gradient-syp);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255,45,149,0.3);
+    }
+
+    .currency-btn:hover:not(.active-usd):not(.active-syp) {
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* Product Detail Box */
+    .product-detail-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .product-icon-lg {
+      width: 80px; height: 80px;
+      margin: 0 auto 15px;
+      background: rgba(0,210,255,0.1);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: var(--neon-cyan);
+    }
+
+    .unit-price-label { color: #888; font-size: 0.9rem; margin-bottom: 4px; }
+
+    .unit-price-value {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
+
+    .unit-price-value.usd-color {
+      background: var(--gradient-usd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .unit-price-value.syp-color {
+      background: var(--gradient-syp);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .syp-equivalent {
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+
+    .syp-equivalent .syp-val {
+      color: var(--neon-pink);
+      font-weight: 800;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 15px 0;
+    }
+
+    .qty-btn {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-btn:hover { background: rgba(0,210,255,0.2); border-color: var(--neon-cyan); }
+    .qty-btn:active { transform: scale(0.9); }
+
+    .qty-input {
+      width: 100px;
+      text-align: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      font-family: 'Tajawal', sans-serif;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .qty-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0,210,255,0.1); }
+
+    .qty-hint { color: #666; font-size: 0.85rem; margin-bottom: 15px; }
+
+    .total-price-label { color: #888; font-size: 0.9rem; }
+
+    .total-price-value {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin: 5px 0 5px;
+    }
+
+    .total-price-value.usd-color {
+      background: var(--gradient-usd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .total-price-value.syp-color {
+      background: var(--gradient-syp);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .total-syp-equivalent {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .total-syp-equivalent .syp-val {
+      color: var(--neon-pink);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .player-id-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-family: 'Tajawal', sans-serif;
+      outline: none;
+      transition: all 0.3s;
+      margin: 10px 0;
+    }
+
+    .player-id-input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0,210,255,0.1); }
+    .player-id-input::placeholder { color: #555; }
+
+    /* ========== Buttons ========== */
+    .btn-buy {
+      background: var(--gradient-main);
+      background-size: 200% auto;
+      border: none;
+      color: #fff;
+      font-weight: 800;
+      padding: 14px 30px;
+      border-radius: 14px;
+      font-size: 1.15rem;
+      transition: all 0.4s;
+      width: 100%;
+      margin-top: 15px;
+      font-family: 'Tajawal', sans-serif;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-buy::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-buy:hover::before { left: 100%; }
+    .btn-buy:hover { background-position: right center; box-shadow: 0 8px 30px rgba(0,210,255,0.3); transform: translateY(-2px); }
+    .btn-buy:active { transform: translateY(0) scale(0.98); }
+
+    /* ========== Payment Options ========== */
+    .payment-option {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .payment-option:hover {
+      background: rgba(0,210,255,0.08);
+      border-color: rgba(0,210,255,0.3);
+    }
+
+    .payment-option.selected {
+      background: rgba(0,210,255,0.12);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 20px rgba(0,210,255,0.1);
+    }
+
+    .payment-option.selected.syp-selected {
+      background: rgba(255,45,149,0.12);
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 20px rgba(255,45,149,0.1);
+    }
+
+    .payment-option .payment-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .payment-option .payment-icon.sham {
+      background: rgba(0,210,255,0.15);
+      color: var(--neon-cyan);
+    }
+
+    .payment-option .payment-icon.syriatel {
+      background: rgba(255,45,149,0.15);
+      color: var(--neon-pink);
+    }
+
+    .payment-option .payment-icon.manual-icon {
+      background: rgba(255,215,0,0.15);
+      color: var(--neon-gold);
+    }
+
+    .payment-option .payment-currency-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      margin-right: 6px;
+    }
+
+    .payment-option .payment-currency-badge.usd {
+      background: rgba(0,230,118,0.15);
+      color: var(--neon-green);
+    }
+
+    .payment-option .payment-currency-badge.syp {
+      background: rgba(255,45,149,0.15);
+      color: var(--neon-pink);
+    }
+
+    .payment-details {
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    .payment-details strong { color: var(--neon-cyan); }
+
+    .payment-details .copy-btn {
+      background: rgba(0,210,255,0.15);
+      border: 1px solid rgba(0,210,255,0.3);
+      color: var(--neon-cyan);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .payment-details .copy-btn:hover { background: rgba(0,210,255,0.25); }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 4px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .social-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+
+    /* ========== Product List in Modal ========== */
+    .product-list-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .product-list-item:hover {
+      background: rgba(0,210,255,0.08);
+      border-color: rgba(0,210,255,0.2);
+      transform: translateX(-4px);
+    }
+
+    .product-list-item .item-price {
+      font-weight: 800;
+      color: var(--neon-cyan);
+      font-size: 1.1rem;
+    }
+
+    .product-list-item .item-syp {
+      color: var(--neon-pink);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .product-list-item .item-unavailable {
+      color: #ff4757;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* ========== Toast ========== */
+    .toast-container {
+      position: fixed;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-msg {
+      background: rgba(0,210,255,0.15);
+      border: 1px solid var(--neon-cyan);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      animation: toastIn 0.4s ease, toastOut 0.4s ease 2.6s;
+      pointer-events: auto;
+    }
+
+    .toast-msg.success {
+      background: rgba(0,230,118,0.15);
+      border-color: var(--neon-green);
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes toastOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-20px); }
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 30px 20px;
+      text-align: center;
+      border-top: 1px solid var(--card-border);
+      margin-top: 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer .footer-brand {
+      font-size: 1.5rem;
+      font-weight: 900;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    footer p { color: #666; font-size: 0.9rem; margin-bottom: 4px; }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 12px;
+    }
+
+    footer .footer-links a { color: #888; text-decoration: none; transition: color 0.3s; }
+    footer .footer-links a:hover { color: var(--neon-cyan); }
+
+    /* ========== Back to Top ========== */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: var(--gradient-main);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(0,210,255,0.3);
+    }
+
+    .back-to-top.visible { opacity: 1; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,210,255,0.4); }
+
+    /* ========== Scrollbar ========== */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+    ::-webkit-scrollbar-thumb { background: rgba(0,210,255,0.3); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0,210,255,0.5); }
+
+    /* ========== Animations ========== */
+    .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.5); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== Purchase summary ========== */
+    .purchase-summary {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .purchase-summary .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .purchase-summary .summary-row.total {
+      border-top: 1px solid var(--card-border);
+      margin-top: 8px;
+      padding-top: 12px;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .purchase-summary .summary-row.total span:last-child {
+      color: var(--neon-cyan);
+    }
+
+    .purchase-summary .summary-row .syp-equiv {
+      color: var(--neon-pink);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .btn-whatsapp:hover { background: #20bd5a; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
+
+    /* ========== Exchange Rate Display ========== */
+    .rate-display-bar {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto 25px;
+      background: linear-gradient(135deg, rgba(0,210,255,0.06) 0%, rgba(123,47,247,0.06) 50%, rgba(255,45,149,0.06) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .rate-display-bar .rate-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(0,210,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--neon-cyan);
+      flex-shrink: 0;
+    }
+
+    .rate-display-bar .rate-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .rate-display-bar .rate-label {
+      color: #888;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .rate-display-bar .rate-value {
+      font-weight: 900;
+      font-size: 1.3rem;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .rate-display-bar .rate-currency {
+      color: var(--neon-pink);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .rate-display-bar .rate-source {
+      color: #555;
+      font-size: 0.72rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .rate-display-bar .rate-source .live-dot {
+      width: 6px; height: 6px;
+      background: var(--neon-green);
+      border-radius: 50%;
+      animation: livePulse 2s infinite;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(1.4); }
+    }
+
+    .rate-display-bar .rate-updated {
+      color: #444;
+      font-size: 0.7rem;
+    }
+
+    @media (max-width: 768px) {
+      .rate-display-bar { padding: 12px 16px; gap: 10px; }
+      .rate-display-bar .rate-value { font-size: 1.1rem; }
+      .rate-display-bar .rate-label { font-size: 0.82rem; }
+    }
+
+    @media (max-width: 480px) {
+      .rate-display-bar { padding: 10px 12px; gap: 8px; border-radius: 12px; }
+      .rate-display-bar .rate-value { font-size: 1rem; }
+      .rate-display-bar .rate-icon { width: 34px; height: 34px; font-size: 0.95rem; }
+    }
+
+    /* ========== Promo Banner ========== */
+    .promo-banner {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 40px auto 10px;
+      background: linear-gradient(135deg, rgba(0,255,136,0.08) 0%, rgba(0,204,255,0.08) 50%, rgba(255,45,117,0.08) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0,255,136,0.2);
+      border-radius: 24px;
+      padding: 36px 32px;
+      text-align: center;
+      overflow: hidden;
+      transition: all 0.4s;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+
+    .promo-banner:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,255,136,0.4);
+      box-shadow: 0 20px 60px rgba(0,255,136,0.12), 0 0 80px rgba(0,204,255,0.06);
+    }
+
+    .promo-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(0,255,136,0.04) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(0,204,255,0.04) 0%, transparent 50%);
+      animation: promoBgRotate 25s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes promoBgRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .promo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,255,136,0.12);
+      border: 1px solid rgba(0,255,136,0.25);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #00ff88;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo-badge .pulse-dot {
+      width: 8px; height: 8px;
+      background: #00ff88;
+      border-radius: 50%;
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.6); }
+    }
+
+    .promo-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+      line-height: 1.4;
+    }
+
+    .promo-title .highlight {
+      background: linear-gradient(135deg, #00ff88, #00ccff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .promo-desc {
+      color: #999;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      line-height: 1.6;
+    }
+
+    .promo-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo-feature {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ccc;
+    }
+
+    .promo-feature i {
+      color: #00ff88;
+      font-size: 0.9rem;
+    }
+
+    .promo-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #00ff88, #00ccff);
+      color: #0a0a0f;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 14px 32px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,255,136,0.3);
+    }
+
+    .promo-cta i {
+      transition: transform 0.3s;
+    }
+
+    .promo-banner:hover .promo-cta i {
+      transform: translateX(-4px);
+    }
+
+    @media (max-width: 768px) {
+      .promo-banner { padding: 28px 20px; margin: 30px 15px 10px; border-radius: 20px; }
+      .promo-title { font-size: 1.3rem; }
+      .promo-desc { font-size: 0.9rem; }
+      .promo-feature { padding: 6px 10px; font-size: 0.78rem; }
+      .promo-cta { padding: 12px 24px; font-size: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .promo-banner { padding: 22px 16px; margin: 25px 10px 10px; }
+      .promo-title { font-size: 1.1rem; }
+      .promo-features { gap: 8px; }
+      .promo-feature { padding: 5px 8px; font-size: 0.72rem; }
+      .promo-cta { padding: 10px 20px; font-size: 0.9rem; }
+    }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 768px) {
+      .hero-section h1 { font-size: 1.8rem; }
+      .category-card { width: 130px; height: 130px; padding: 14px 8px; }
+      .category-card .card-icon-wrap { width: 48px; height: 48px; font-size: 1.3rem; }
+      .category-card span { font-size: 0.85rem; }
+      .app-card { width: 115px; height: 115px; padding: 12px 6px; }
+      .app-card .app-card-name { font-size: 0.72rem; }
+      .unit-price-value { font-size: 1.8rem; }
+      .total-price-value { font-size: 2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .category-card { width: 110px; height: 110px; padding: 10px 6px; }
+      .category-card .card-icon-wrap { width: 40px; height: 40px; font-size: 1.1rem; }
+      .category-card span { font-size: 0.78rem; }
+      .app-card { width: 100px; height: 100px; padding: 10px 5px; }
+      .app-card .app-card-name { font-size: 0.68rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background Effects -->
+<div class="bg-gradient-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<canvas id="particles-bg"></canvas>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Navbar -->
+<nav class="navbar-custom" id="navbar">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a class="brand-logo" href="#">
+      <i class="fas fa-gamepad"></i>
+      RecolX
+    </a>
+    <div class="social-nav d-flex gap-2">
+      <a href="https://t.me/RecoIlX" target="_blank" title="تلغرام"><i class="fab fa-telegram"></i></a>
+      <a href="https://www.facebook.com/share/18pwgdFhsd/" target="_blank" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/recolxpc" target="_blank" title="انستغرام"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/947XXXXXX" target="_blank" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero-section">
+  <h1 class="fade-in-up">شحن <span>ألعابك</span> و<span>تطبيقاتك</span></h1>
+  <p class="fade-in-up">شحن فوري ⚡ - ادفع بالدولار أو الليرة السورية عبر شام كاش أو يدوياً</p>
+</div>
+
+<!-- Main Content -->
+<div class="container" style="position:relative; z-index:1;">
+  <!-- Tabs -->
+  <div class="custom-tabs fade-in-up">
+    <button class="custom-tab active" id="tabGames" onclick="switchTab('games')">
+      <i class="fas fa-gamepad"></i> الألعاب
+    </button>
+    <button class="custom-tab" id="tabApps" onclick="switchTab('apps')">
+      <i class="fas fa-mobile-alt"></i> التطبيقات
+    </button>
+  </div>
+
+  <!-- Exchange Rate Display -->
+  <div class="rate-display-bar fade-in-up" id="rateDisplayBar">
+    <div class="rate-icon"><i class="fas fa-exchange-alt"></i></div>
+    <div class="rate-info">
+      <span class="rate-label">سعر الصرف:</span>
+      <span class="rate-value" id="rateValueDisplay">1$ = ... ل.س</span>
+    </div>
+    <div class="rate-source">
+      <span class="live-dot"></span>
+      <span id="rateSourceDisplay">جارٍ التحديث...</span>
+    </div>
+    <div class="rate-updated" id="rateTimeDisplay"></div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-container fade-in-up">
+    <input type="text" id="searchInput" placeholder="ابحث عن لعبة أو تطبيق..." oninput="handleSearch()">
+    <i class="fas fa-search"></i>
+  </div>
+
+  <!-- Games Tab -->
+  <div id="gamesContent">
+    <div class="category-grid" id="gameGrid"></div>
+  </div>
+
+  <!-- Apps Tab -->
+  <div id="appsContent" style="display:none;">
+    <div class="apps-grid" id="appGrid"></div>
+  </div>
+
+  <!-- Promo Banner for RecoilX -->
+  <a href="https://recolx-rcl.github.io/" target="_blank" class="promo-banner fade-in-up">
+    <div class="promo-badge">
+      <span class="pulse-dot"></span>
+      جديد ومتاح الآن
+    </div>
+    <div class="promo-title">
+      هلق فيك تتحكم برصاصة سلاحك! جرب <span class="highlight">RecoilX</span>
+    </div>
+    <div class="promo-desc">
+      أقوى برنامج تحكم بالرصاصة للالعاب والكمبيوتر - كشف تلقائي، 10 بروفايلات ألعاب، وتقنية مضادة للكشف
+    </div>
+    <div class="promo-features">
+      <span class="promo-feature"><i class="fas fa-crosshairs"></i> تحكم بالرصاصة</span>
+      <span class="promo-feature"><i class="fas fa-robot"></i> كشف تلقائي</span>
+      <span class="promo-feature"><i class="fas fa-gamepad"></i> 10 بروفايلات</span>
+      <span class="promo-feature"><i class="fas fa-shield-halved"></i> مضاد للكشف</span>
+      <span class="promo-feature"><i class="fas fa-bolt"></i> Rapid Fire</span>
+    </div>
+    <div class="promo-cta">
+      اكتشف RecoilX الآن
+      <i class="fas fa-arrow-left"></i>
+    </div>
+  </a>
+</div>
+
+<!-- Product Detail Modal -->
+<div class="modal fade" id="productDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productDetailTitle"></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="product-detail-box">
+          <div class="product-icon-lg"><i class="fas fa-gem"></i></div>
+
+          <!-- Currency Toggle -->
+          <div class="currency-toggle">
+            <button class="currency-btn active-usd" id="currUsdBtn" onclick="switchCurrency('USD')">
+              <i class="fas fa-dollar-sign"></i> دولار
+            </button>
+            <button class="currency-btn" id="currSypBtn" onclick="switchCurrency('SYP')">
+              <i class="fas fa-coins"></i> ليرة
+            </button>
+          </div>
+
+          <div class="unit-price-label">سعر الوحدة</div>
+          <div class="unit-price-value usd-color" id="unitPriceDisplay"></div>
+          <div class="syp-equivalent" id="unitSypEquiv"></div>
+
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty(-1)"><i class="fas fa-minus"></i></button>
+            <input type="number" class="qty-input" id="qtyInput" min="1" max="10000000" value="1" oninput="updateTotalPrice()">
+            <button class="qty-btn" onclick="changeQty(1)"><i class="fas fa-plus"></i></button>
+          </div>
+          <div class="qty-hint" id="qtyHint"></div>
+
+          <div class="total-price-label">السعر الإجمالي</div>
+          <div class="total-price-value usd-color" id="totalPriceDisplay"></div>
+          <div class="total-syp-equivalent" id="totalSypEquiv"></div>
+
+          <input type="text" class="player-id-input" id="playerIdInput" placeholder="أدخل رقم اللاعب (Player ID)" dir="ltr">
+
+          <button class="btn-buy" onclick="goToPayment()">
+            <i class="fas fa-shopping-cart" style="margin-left:8px;"></i> شراء الآن
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal fade" id="purchaseModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fas fa-credit-card" style="margin-left:8px;"></i> إتمام الشراء</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="purchase-summary">
+          <div class="summary-row">
+            <span>المنتج</span>
+            <strong id="modalProductName"></strong>
+          </div>
+          <div class="summary-row">
+            <span>العدد</span>
+            <strong id="modalQty"></strong>
+          </div>
+          <div class="summary-row">
+            <span>Player ID</span>
+            <strong id="modalPlayerId"></strong>
+          </div>
+          <div class="summary-row total">
+            <span>الإجمالي (USD)</span>
+            <span id="modalPriceUsd"></span>
+          </div>
+          <div class="summary-row" style="justify-content:center;">
+            <span class="syp-equiv">≈ <span id="modalPriceSyp"></span> ل.س</span>
+          </div>
+        </div>
+
+        <p style="color:#888; font-size:0.9rem; margin-bottom:12px;">اختر طريقة الدفع:</p>
+
+        <!-- شام كاش - USD -->
+        <div class="payment-option" id="shamUsdOpt" onclick="selectPayment('sham-usd')">
+          <div class="payment-icon sham"><i class="fas fa-wallet"></i></div>
+          <div>
+            <strong>شام كاش <span class="payment-currency-badge usd">USD</span></strong>
+            <div style="color:#888; font-size:0.85rem;">دفع بالدولار عبر شام كاش</div>
+          </div>
+        </div>
+        <div id="shamUsdDetails" style="display:none;">
+          <div class="payment-details">
+            <div>معرّف الحساب: <strong id="shamUsdNumber">9cea9032cec5ce50804a2e956f7ac683</strong>
+              <button class="copy-btn" onclick="copyText('9cea9032cec5ce50804a2e956f7ac683')"><i class="fas fa-copy"></i> نسخ</button>
+            </div>
+            <div>الاسم: <strong>RecolX Store</strong></div>
+            <div style="margin-top:8px; color:var(--neon-green); font-weight:700;">المبلغ المطلوب: <span id="shamUsdAmount"></span></div>
+          </div>
+        </div>
+
+        <!-- شام كاش - SYP -->
+        <div class="payment-option" id="shamSypOpt" onclick="selectPayment('sham-syp')">
+          <div class="payment-icon sham" style="background:rgba(255,45,149,0.15); color:var(--neon-pink);"><i class="fas fa-wallet"></i></div>
+          <div>
+            <strong>شام كاش <span class="payment-currency-badge syp">SYP</span></strong>
+            <div style="color:#888; font-size:0.85rem;">دفع بالليرة السورية عبر شام كاش</div>
+          </div>
+        </div>
+        <div id="shamSypDetails" style="display:none;">
+          <div class="payment-details">
+            <div>معرّف الحساب: <strong id="shamSypNumber">9cea9032cec5ce50804a2e956f7ac683</strong>
+              <button class="copy-btn" onclick="copyText('9cea9032cec5ce50804a2e956f7ac683')"><i class="fas fa-copy"></i> نسخ</button>
+            </div>
+            <div>الاسم: <strong>RecolX Store</strong></div>
+            <div style="margin-top:8px;">
+              <div style="color:var(--neon-cyan); font-size:0.85rem;">سعر الصرف: 1$ = <span id="shamSypRate"></span> ل.س</div>
+              <div style="color:var(--neon-pink); font-weight:700; font-size:1.1rem; margin-top:4px;">المبلغ المطلوب: <span id="shamSypAmount"></span> ل.س</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- دفع يدوي - SYP -->
+        <div class="payment-option" id="manualOpt" onclick="selectPayment('manual')">
+          <div class="payment-icon" style="background:rgba(255,215,0,0.15); color:var(--neon-gold); width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;"><i class="fas fa-hand-holding-dollar"></i></div>
+          <div>
+            <strong>دفع يدوي <span class="payment-currency-badge syp">SYP</span></strong>
+            <div style="color:#888; font-size:0.85rem;">دفع بالليرة السورية يدوياً حسب المكان القريب منك</div>
+          </div>
+        </div>
+        <div id="manualDetails" style="display:none;">
+          <div class="payment-details">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+              <i class="fas fa-map-marker-alt" style="color:var(--neon-gold);"></i>
+              <strong style="color:var(--neon-gold);">الدفع اليدوي - حسب المكان القريب</strong>
+            </div>
+            <div style="margin-bottom:8px;">تواصل معنا لتحديد مكان الدفع القريب منك وتسليم المبلغ يدوياً بالليرة السورية</div>
+            <div style="margin-top:8px;">
+              <div style="color:var(--neon-cyan); font-size:0.85rem;">سعر الصرف: 1$ = <span id="manualRate"></span> ل.س</div>
+              <div style="color:var(--neon-pink); font-weight:700; font-size:1.1rem; margin-top:4px;">المبلغ المطلوب: <span id="manualAmount"></span> ل.س</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:rgba(0,0,0,0.2); border-radius:14px; padding:16px; margin-top:16px;">
+          <div style="color:#888; font-size:0.9rem; margin-bottom:10px;">
+            <i class="fas fa-info-circle" style="margin-left:6px; color:var(--neon-cyan);"></i>
+            بعد التحويل، تواصل معنا وأرسل إيصال الدفع:
+          </div>
+          <div class="d-flex flex-wrap justify-content-center gap-2">
+            <a href="https://t.me/RecoIlX" target="_blank" class="social-btn" style="background:#0088cc;">
+              <i class="fab fa-telegram"></i> تلغرام
+            </a>
+            <a href="https://wa.me/947XXXXXX" target="_blank" class="btn-whatsapp">
+              <i class="fab fa-whatsapp"></i> واتساب
+            </a>
+            <a href="https://www.facebook.com/share/18pwgdFhsd/" target="_blank" class="social-btn" style="background:#1877F2;">
+              <i class="fab fa-facebook-f"></i> فيسبوك
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius:10px;">إلغاء</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-brand">RecolX</div>
+  <p>&copy; 2026 RecolX - جميع الحقوق محفوظة</p>
+  <p style="font-size:0.8rem;">الأسعار قابلة للتغيير حسب المزوّد - آخر تحديث: مايو 2026</p>
+  <div class="footer-links">
+    <a href="https://t.me/RecoIlX" target="_blank"><i class="fab fa-telegram"></i> تلغرام</a>
+    <a href="https://www.facebook.com/share/18pwgdFhsd/" target="_blank"><i class="fab fa-facebook-f"></i> فيسبوك</a>
+    <a href="https://www.instagram.com/recolxpc" target="_blank"><i class="fab fa-instagram"></i> انستغرام</a>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ========== Configuration ==========
+const SHAM_CASH_ID = "9cea9032cec5ce50804a2e956f7ac683";
+
+
+// ========== Exchange Rate ==========
+let exchangeRate = 18000; // fallback default
+let rateSource = '';
+let rateLastUpdate = null;
+let selectedCurrency = 'USD';
+let rateRefreshInterval = null;
+
+async function fetchExchangeRate() {
+  const corsProxies = [
+    url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
+  ];
+
+  // Method 1: SP-Today API (JSON) - gets black market sell rate directly
+  const spApiUrls = [
+    'https://sp-today.com/api/v1/currency/usd.json',
+    'https://sp-today.com/api/v2/currency/usd'
+  ];
+  for (const apiUrl of spApiUrls) {
+    for (const proxyFn of corsProxies) {
+      try {
+        const proxyUrl = proxyFn(apiUrl);
+        const resp = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
+        if (!resp.ok) continue;
+        const data = await resp.json();
+        const rate = parseSPApiJSON(data);
+        if (rate && rate > 5000) {
+          setRate(rate, 'SP-Today API');
+          return;
+        }
+      } catch (e) {
+        console.log('SP-Today API failed:', e.message);
+      }
+    }
+  }
+
+  // Method 2: SP-Today HTML page via CORS proxies (parse sell rate)
+  const spTodayUrls = [
+    'https://sp-today.com/en/currency/us-dollar',
+    'https://sp-today.com/en'
+  ];
+  for (const proxyFn of corsProxies) {
+    for (const pageUrl of spTodayUrls) {
+      try {
+        const proxyUrl = proxyFn(pageUrl);
+        const resp = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
+        if (!resp.ok) continue;
+        const html = await resp.text();
+        const rate = parseSPTodayHTML(html);
+        if (rate && rate > 5000) {
+          setRate(rate, 'SP-Today');
+          return;
+        }
+      } catch (e) {
+        console.log('SP-Today HTML failed:', e.message);
+      }
+    }
+  }
+
+  // Method 3: Open Exchange Rate API (may be official rate - filter out low rates)
+  const rateAPIs = [
+    {
+      url: 'https://open.er-api.com/v6/latest/USD',
+      parse: data => {
+        if (data && data.rates && data.rates.SYP) {
+          const rate = Math.round(data.rates.SYP);
+          if (rate > 5000) return rate;
+        }
+        return null;
+      },
+      source: 'ER-API'
+    },
+    {
+      url: 'https://api.exchangerate-api.com/v4/latest/USD',
+      parse: data => {
+        if (data && data.rates && data.rates.SYP) {
+          const rate = Math.round(data.rates.SYP);
+          if (rate > 5000) return rate;
+        }
+        return null;
+      },
+      source: 'ExchangeRate-API'
+    }
+  ];
+  for (const api of rateAPIs) {
+    try {
+      const resp = await fetch(api.url, { signal: AbortSignal.timeout(5000) });
+      const data = await resp.json();
+      const rate = api.parse(data);
+      if (rate) {
+        setRate(rate, api.source);
+        return;
+      }
+    } catch (e) {
+      console.log('API failed:', api.url, e.message);
+    }
+  }
+
+  // Method 4: Use cached rate from localStorage
+  const stored = localStorage.getItem('recolx_exchange_rate');
+  const storedSource = localStorage.getItem('recolx_rate_source');
+  const storedTime = localStorage.getItem('recolx_rate_time');
+  if (stored) {
+    const storedRate = parseInt(stored);
+    if (storedRate > 5000) {
+      exchangeRate = storedRate;
+      rateSource = storedSource || 'محفوظ';
+      if (storedTime) rateLastUpdate = new Date(parseInt(storedTime));
+    }
+  }
+  updateRateDisplay();
+  startRateAutoRefresh();
+}
+
+function setRate(rate, source) {
+  exchangeRate = rate;
+  rateSource = source;
+  rateLastUpdate = new Date();
+  localStorage.setItem('recolx_exchange_rate', rate.toString());
+  localStorage.setItem('recolx_rate_source', source);
+  localStorage.setItem('recolx_rate_time', Date.now().toString());
+  updateRateDisplay();
+  startRateAutoRefresh();
+}
+
+function parseSPApiJSON(data) {
+  // SP-Today API may return an object or array with buy/sell rates
+  try {
+    if (Array.isArray(data)) {
+      // Find USD entry and get highest sell rate
+      let maxSell = 0;
+      for (const item of data) {
+        if (item.code === 'USD' || item.currency === 'USD' || item.name === 'US Dollar') {
+          const sell = parseInt(item.ask || item.sell || item.selling || 0);
+          const buy = parseInt(item.bid || item.buy || item.buying || 0);
+          if (sell > maxSell && sell > 5000) maxSell = sell;
+          // If no sell rate, use buy rate (better than nothing)
+          if (maxSell === 0 && buy > 5000) maxSell = buy;
+        }
+      }
+      return maxSell > 0 ? maxSell : null;
+    }
+    if (data && typeof data === 'object') {
+      // Single object format
+      const sell = parseInt(data.ask || data.sell || data.selling || 0);
+      const buy = parseInt(data.bid || data.buy || data.buying || 0);
+      if (sell > 5000) return sell;
+      if (buy > 5000) return buy;
+      // Try rates.SYP format
+      if (data.rates && data.rates.SYP) {
+        const rate = Math.round(data.rates.SYP);
+        if (rate > 5000) return rate;
+      }
+    }
+  } catch (e) {
+    console.log('Parse SP-Today API JSON failed:', e);
+  }
+  return null;
+}
+
+function parseSPTodayHTML(html) {
+  // SP-Today shows rates like: 13,650/13,720 (buy/sell)
+  // We want the HIGHEST sell rate (سعر المبيع) from all pairs found
+  try {
+    // Try to find the buy/sell pattern: XX,XXX/XX,XXX
+    const ratePattern = /([\d,]+)\s*\/\s*([\d,]+)/g;
+    let match;
+    const candidates = [];
+    while ((match = ratePattern.exec(html)) !== null) {
+      const buy = parseInt(match[1].replace(/,/g, ''));
+      const sell = parseInt(match[2].replace(/,/g, ''));
+      if (buy > 5000 && sell > 5000 && buy < 100000 && sell < 100000) {
+        candidates.push({ buy, sell });
+      }
+    }
+    if (candidates.length > 0) {
+      // Return the HIGHEST sell rate (سعر المبيع الأعلى)
+      const maxSell = candidates.reduce((max, c) => c.sell > max.sell ? c : max, candidates[0]);
+      return maxSell.sell;
+    }
+
+    // Fallback: look for any 5-digit number that looks like a SYP rate
+    const numPattern = /1[0-5],[0-9]{3}/g;
+    const nums = html.match(numPattern);
+    if (nums && nums.length > 0) {
+      // Return the highest number found
+      const parsed = nums.map(n => parseInt(n.replace(/,/g, '')));
+      return Math.max(...parsed);
+    }
+  } catch (e) {
+    console.log('Parse SP-Today failed:', e);
+  }
+  return null;
+}
+
+function startRateAutoRefresh() {
+  // Auto-refresh rate every 30 minutes
+  if (rateRefreshInterval) clearInterval(rateRefreshInterval);
+  rateRefreshInterval = setInterval(() => {
+    fetchExchangeRate();
+  }, 30 * 60 * 1000); // 30 minutes
+}
+
+function updateRateDisplay() {
+  console.log(`[RecolX] سعر الصرف: 1$ = ${exchangeRate.toLocaleString()} ل.س (مصدر: ${rateSource || 'افتراضي'})`);
+
+  // Update visible rate bar
+  const rateValueEl = document.getElementById('rateValueDisplay');
+  const rateSourceEl = document.getElementById('rateSourceDisplay');
+  const rateTimeEl = document.getElementById('rateTimeDisplay');
+
+  if (rateValueEl) {
+    rateValueEl.textContent = `1$ = ${exchangeRate.toLocaleString()} ل.س`;
+  }
+  if (rateSourceEl) {
+    const sourceMap = {
+      'SP-Today API': 'SP-Today',
+      'SP-Today': 'SP-Today',
+      'ER-API': 'ER-API',
+      'ExchangeRate-API': 'ExchangeRate',
+      'محفوظ': 'محفوظ محلياً',
+      'افتراضي': 'سعر افتراضي'
+    };
+    rateSourceEl.textContent = sourceMap[rateSource] || rateSource || 'سعر افتراضي';
+  }
+  if (rateTimeEl && rateLastUpdate) {
+    const h = rateLastUpdate.getHours().toString().padStart(2, '0');
+    const m = rateLastUpdate.getMinutes().toString().padStart(2, '0');
+    rateTimeEl.textContent = `آخر تحديث: ${h}:${m}`;
+  }
+
+  // Refresh price displays in modals if they're open
+  refreshPriceDisplays();
+}
+
+
+
+function usdToSyp(usd) {
+  return Math.round(usd * exchangeRate);
+}
+
+function formatSyp(amount) {
+  return amount.toLocaleString('en-US');
+}
+
+// ========== Products Data ==========
+const gamesProducts = [
+  { game: "PUBG Mobile", name: "60 شدة", price: 1.38, minQty: 1, maxQty: 100 },
+  { game: "PUBG Mobile", name: "325 شدة", price: 4.91, minQty: 1, maxQty: 100 },
+  { game: "PUBG Mobile", name: "660 شدة", price: 9.33, minQty: 1, maxQty: 100 },
+  { game: "PUBG Mobile", name: "1800 شدة", price: 22.63, minQty: 1, maxQty: 100 },
+  { game: "PUBG Mobile", name: "3850 شدة", price: 45.14, minQty: 1, maxQty: 100 },
+  { game: "PUBG Mobile", name: "8100 شدة", price: 86.60, minQty: 1, maxQty: 100 },
+  { game: "PUBG Mobile", name: "1800 شدة يدوي", price: 22.82, minQty: 1, maxQty: 100 },
+  { game: "PUBG Mobile", name: "3850 شدة يدوي", price: 44.28, minQty: 1, maxQty: 100 },
+  { game: "PUBG Mobile", name: "8100 شدة يدوي", price: 86.50, minQty: 1, maxQty: 100 },
+  { game: "PUBG Mobile", name: "حزمة الشراء الأول", price: 1.37, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "حزمة ترقية الأسلحة النارية", price: 3.11, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "حزمة الشعار الخرافي", price: 4.85, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "Prime - شهر", price: 1.37, minQty: 1, maxQty: 12 },
+  { game: "PUBG Mobile", name: "Prime - 3 أشهر", price: 3.11, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "Prime - 6 أشهر", price: 5.72, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "Prime - 12 شهر", price: 10.93, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "Prime Plus - شهر", price: 9.19, minQty: 1, maxQty: 12 },
+  { game: "PUBG Mobile", name: "Prime Plus - 3 أشهر", price: 26.57, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "Prime Plus - 6 أشهر", price: 52.65, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "Prime Plus - 12 شهر", price: 104.80, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "بطاقة النخبة (lv1-50)", price: 5.38, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "بطاقة النخبة (lv1-100)", price: 10.26, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "بطاقة النخبة بلس (lv1-100)", price: 24.91, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "حزمة الصفقات الأسبوعية 1", price: 1.39, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "حزمة الصفقات الأسبوعية 2", price: 3.19, minQty: 1, maxQty: 10 },
+  { game: "PUBG Mobile", name: "حزمة الشعار الاسطوري الاسبوعي", price: 3.19, minQty: 1, maxQty: 10 },
+  { game: "Free Fire", name: "100+10 جوهرة (روبوت)", price: 1.48, minQty: 1, maxQty: 100 },
+  { game: "Free Fire", name: "210+21 جوهرة (روبوت)", price: 2.46, minQty: 1, maxQty: 100 },
+  { game: "Free Fire", name: "530+53 جوهرة (روبوت)", price: 5.40, minQty: 1, maxQty: 100 },
+  { game: "Free Fire", name: "1080+108 جوهرة (روبوت)", price: 10.29, minQty: 1, maxQty: 100 },
+  { game: "Free Fire", name: "2200+220 جوهرة (روبوت)", price: 20.09, minQty: 1, maxQty: 100 },
+  { game: "Free Fire", name: "110 جوهرة (كود)", price: 1.45, minQty: 1, maxQty: 100 },
+  { game: "Free Fire", name: "221 جوهرة (كود)", price: 2.40, minQty: 1, maxQty: 100 },
+  { game: "Free Fire", name: "531 جوهرة (كود)", price: 5.24, minQty: 1, maxQty: 100 },
+  { game: "Free Fire", name: "1188 جوهرة (كود)", price: 9.98, minQty: 1, maxQty: 100 },
+  { game: "جواكر", name: "جواكر (عادي)", price: 1.649, minQty: 10000, maxQty: 10000000 },
+  { game: "جواكر", name: "مسرع أحمر", price: 2.107, minQty: 1, maxQty: 1000 },
+  { game: "جواكر", name: "مسرع أزرق", price: 8.215, minQty: 1, maxQty: 1000 },
+  { game: "جواكر", name: "مسرع أسود", price: 14.898, minQty: 1, maxQty: 1000 },
+  { game: "جواكر", name: "مسرع دهبي", price: 26.715, minQty: 1, maxQty: 1000 },
+  { game: "Clash of Clans", name: "كود 88 جوهرة", price: 1.71, minQty: 1, maxQty: 100 },
+  { game: "Clash of Clans", name: "كود 500 جوهرة", price: 6.66, minQty: 1, maxQty: 100 },
+  { game: "Lords Mobile", name: "195 جوهرة", price: 2.47, minQty: 1, maxQty: 100 },
+  { game: "Lords Mobile", name: "395 جوهرة", price: 4.45, minQty: 1, maxQty: 100 },
+  { game: "Lords Mobile", name: "785 جوهرة", price: 8.39, minQty: 1, maxQty: 100 },
+  { game: "Lords Mobile", name: "1179 جوهرة", price: 13.74, minQty: 1, maxQty: 100 },
+  { game: "Lords Mobile", name: "1964 جوهرة", price: null, minQty: 1, maxQty: 100 }
+];
+
+const appsProducts = [
+  { name: "سول شيل - Soul Chill", price: 2.27, minQty: 1, maxQty: 100 },
+  { name: "سول شات - Soul Chat", price: 1.65, minQty: 1, maxQty: 100 },
+  { name: "بيغو لايف - Bigo Live", price: 0.95, minQty: 1, maxQty: 100 },
+  { name: "بوبو لايف - Poppo Live", price: 1.54, minQty: 1, maxQty: 100 },
+  { name: "مرحبا شات - Mar7ba Chat", price: 1.22, minQty: 1, maxQty: 100 },
+  { name: "هابي لايف عربي - Hapi Live", price: 1.60, minQty: 1, maxQty: 100 },
+  { name: "بوتا لايف - Pota Live", price: 1.55, minQty: 1, maxQty: 100 },
+  { name: "يويو شات - Yoyo Chat", price: 1.60, minQty: 1, maxQty: 100 },
+  { name: "زينا لايف - Xena Live", price: 1.60, minQty: 1, maxQty: 100 },
+  { name: "هوني جار - Hony Jar", price: 1.28, minQty: 1, maxQty: 100 },
+  { name: "اهلن شات - Ahlan Chat", price: 1.33, minQty: 1, maxQty: 100 },
+  { name: "لاما شات - Lama Chat", price: 1.55, minQty: 1, maxQty: 100 },
+  { name: "تاكا لايف - Taka Live", price: 1.54, minQty: 1, maxQty: 100 },
+  { name: "هيجو شات - Higo Chat", price: 1.58, minQty: 1, maxQty: 100 },
+  { name: "لايكي - Likee", price: 1.42, minQty: 1, maxQty: 100 },
+  { name: "سوبر لايف - Super Live", price: 1.48, minQty: 1, maxQty: 100 },
+  { name: "يايا شات - Yayya Chat", price: 1.41, minQty: 1, maxQty: 100 },
+  { name: "بينمو شات - Binmo Chat", price: 1.78, minQty: 1, maxQty: 100 },
+  { name: "بيلا شات", price: 1.82, minQty: 1, maxQty: 100 },
+  { name: "أمو شات", price: 1.14, minQty: 1, maxQty: 100 },
+  { name: "ليت مي", price: 1.43, minQty: 1, maxQty: 100 },
+  { name: "أيومي شات", price: 1.45, minQty: 1, maxQty: 100 },
+  { name: "ديمو", price: 1.44, minQty: 1, maxQty: 100 },
+  { name: "Layla", price: 1.62, minQty: 1, maxQty: 100 },
+  { name: "Pep Live", price: 1.60, minQty: 1, maxQty: 100 },
+  { name: "Talk Talk", price: 1.35, minQty: 1, maxQty: 100 },
+  { name: "Tami Chat", price: 1.63, minQty: 1, maxQty: 100 },
+  { name: "Mazyoun zina", price: 1.88, minQty: 1, maxQty: 100 },
+  { name: "Saya Likee", price: 2.24, minQty: 1, maxQty: 100 },
+  { name: "يا اهلن شات - Ya Ahlan Chat", price: 2.31, minQty: 1, maxQty: 100 },
+  { name: "سول ستار - Soul Star", price: 1.60, minQty: 1, maxQty: 100 },
+  { name: "سويو شات - Soyo Chat", price: 1.32, minQty: 1, maxQty: 100 },
+  { name: "Fofo Chat", price: 1.81, minQty: 1, maxQty: 100 },
+  { name: "سيا شات - Siya Chat", price: null, minQty: 1, maxQty: 100 },
+  { name: "يووي", price: null, minQty: 1, maxQty: 100 },
+  { name: "Pika Chat", price: null, minQty: 1, maxQty: 100 },
+  { name: "Haza Chat", price: null, minQty: 1, maxQty: 100 },
+  { name: "We Star", price: null, minQty: 1, maxQty: 100 },
+  { name: "Ghanny Live", price: null, minQty: 1, maxQty: 100 },
+  { name: "Ifun Chat", price: null, minQty: 1, maxQty: 100 },
+  { name: "PartyU", price: null, minQty: 1, maxQty: 100 },
+  { name: "Party GO", price: null, minQty: 1, maxQty: 100 }
+];
+
+const gamesList = [
+  { name: "PUBG Mobile", icon: "fa-crosshairs", iconBg: "rgba(255,215,0,0.15)", iconColor: "#ffd700", badge: "الأكثر طلباً" },
+  { name: "Free Fire", icon: "fa-fire", iconBg: "rgba(255,107,53,0.15)", iconColor: "#ff6b35", badge: null },
+  { name: "جواكر", icon: "fa-chess-queen", iconBg: "rgba(123,47,247,0.15)", iconColor: "#7b2ff7", badge: null },
+  { name: "Clash of Clans", icon: "fa-shield-halved", iconBg: "rgba(0,230,118,0.15)", iconColor: "#00e676", badge: null },
+  { name: "Lords Mobile", icon: "fa-crown", iconBg: "rgba(0,210,255,0.15)", iconColor: "#00d2ff", badge: null }
+];
+
+let currentProduct = null;
+let selectedPayment = null;
+let currentTab = 'games';
+
+// ========== Particles ==========
+(function initParticles() {
+  const canvas = document.getElementById('particles-bg');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  const count = 50;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      r: Math.random() * 2 + 0.5,
+      alpha: Math.random() * 0.3 + 0.1
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0, 210, 255, ${p.alpha})`;
+      ctx.fill();
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0, 210, 255, ${0.05 * (1 - dist / 150)})`;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ========== Navbar Scroll ==========
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  const btn = document.getElementById('backToTop');
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+  btn.classList.toggle('visible', window.scrollY > 300);
+});
+
+// ========== Tab Switching ==========
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById('tabGames').classList.toggle('active', tab === 'games');
+  document.getElementById('tabApps').classList.toggle('active', tab === 'apps');
+  document.getElementById('gamesContent').style.display = tab === 'games' ? 'block' : 'none';
+  document.getElementById('appsContent').style.display = tab === 'apps' ? 'block' : 'none';
+  document.getElementById('searchInput').value = '';
+  handleSearch();
+}
+
+// ========== Currency Switch ==========
+function switchCurrency(curr) {
+  selectedCurrency = curr;
+  const usdBtn = document.getElementById('currUsdBtn');
+  const sypBtn = document.getElementById('currSypBtn');
+  
+  usdBtn.className = 'currency-btn' + (curr === 'USD' ? ' active-usd' : '');
+  sypBtn.className = 'currency-btn' + (curr === 'SYP' ? ' active-syp' : '');
+  
+  updateTotalPrice();
+}
+
+// ========== Search ==========
+function handleSearch() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  if (currentTab === 'games') {
+    document.querySelectorAll('#gameGrid .category-card').forEach(card => {
+      card.style.display = (card.getAttribute('data-name') || '').toLowerCase().includes(q) ? '' : 'none';
+    });
+  } else {
+    document.querySelectorAll('#appGrid .app-card').forEach(card => {
+      card.style.display = (card.getAttribute('data-name') || '').toLowerCase().includes(q) ? '' : 'none';
+    });
+  }
+}
+
+// ========== Render Game Grid ==========
+function renderGameGrid() {
+  const grid = document.getElementById('gameGrid');
+  grid.innerHTML = '';
+  gamesList.forEach((game, idx) => {
+    const card = document.createElement('div');
+    card.className = 'category-card fade-in-up';
+    card.style.animationDelay = `${0.1 * idx}s`;
+    card.setAttribute('data-name', game.name);
+    card.onclick = () => showGameProducts(game.name);
+    card.innerHTML = `
+      ${game.badge ? `<div class="card-badge">${game.badge}</div>` : ''}
+      <div class="card-icon-wrap" style="background:${game.iconBg}; color:${game.iconColor};">
+        <i class="fas ${game.icon}"></i>
+      </div>
+      <span>${game.name}</span>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ========== Render App Grid ==========
+function renderAppGrid() {
+  const grid = document.getElementById('appGrid');
+  grid.innerHTML = '';
+  appsProducts.forEach((app, idx) => {
+    const card = document.createElement('div');
+    card.className = 'app-card fade-in-up';
+    card.style.animationDelay = `${Math.min(idx * 0.04, 0.8)}s`;
+    card.setAttribute('data-name', app.name);
+    if (app.price) card.onclick = () => openProductDetail(app);
+    
+    const priceHTML = app.price
+      ? `<div class="app-card-price">${app.price.toFixed(2)} $</div><div class="app-card-syp">${formatSyp(usdToSyp(app.price))} ل.س</div>`
+      : `<div class="app-card-unavail"><i class="fas fa-times-circle"></i> قريباً</div>`;
+    
+    card.innerHTML = `
+      <div class="app-card-name">${app.name}</div>
+      ${priceHTML}
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ========== Show Game Products List ==========
+function showGameProducts(gameName) {
+  const filtered = gamesProducts.filter(p => p.game === gameName);
+  if (filtered.length === 0) return;
+
+  const gameInfo = gamesList.find(g => g.name === gameName);
+  const gameIconClass = gameInfo ? gameInfo.icon : 'fa-gamepad';
+  const gameIconColor = gameInfo ? gameInfo.iconColor : 'var(--neon-cyan)';
+  const gameIconBg = gameInfo ? gameInfo.iconBg : 'rgba(0,210,255,0.15)';
+
+  const modal = document.createElement('div');
+  modal.className = 'modal fade';
+  modal.tabIndex = '-1';
+  modal.innerHTML = `
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="display:flex; align-items:center; gap:12px;">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:10px; background:${gameIconBg}; color:${gameIconColor}; font-size:1.1rem;"><i class="fas ${gameIconClass}"></i></span>
+            ${gameName}
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="gameListBody"></div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  const body = modal.querySelector('#gameListBody');
+  filtered.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'product-list-item';
+    if (p.price) {
+      div.onclick = () => {
+        const bsModal = bootstrap.Modal.getInstance(modal);
+        if (bsModal) bsModal.hide();
+        setTimeout(() => openProductDetail(p), 300);
+      };
+    }
+    const priceHTML = p.price
+      ? `<div style="text-align:left;"><span class="item-price">${p.price.toFixed(2)} $</span><span class="item-syp">≈ ${formatSyp(usdToSyp(p.price))} ل.س</span></div>`
+      : `<span class="item-unavailable"><i class="fas fa-times-circle"></i> غير متوفر</span>`;
+    div.innerHTML = `<span>${p.name}</span>${priceHTML}`;
+    body.appendChild(div);
+  });
+  const bsModal = new bootstrap.Modal(modal);
+  bsModal.show();
+  modal.addEventListener('hidden.bs.modal', () => modal.remove());
+}
+
+// ========== Product Detail ==========
+function openProductDetail(product) {
+  currentProduct = product;
+  selectedCurrency = 'USD';
+  document.getElementById('productDetailTitle').textContent = product.name;
+  document.getElementById('currUsdBtn').className = 'currency-btn active-usd';
+  document.getElementById('currSypBtn').className = 'currency-btn';
+  const qtyInput = document.getElementById('qtyInput');
+  qtyInput.value = product.minQty;
+  qtyInput.min = product.minQty;
+  qtyInput.max = product.maxQty;
+  document.getElementById('qtyHint').textContent = `الكمية: من ${product.minQty.toLocaleString()} إلى ${product.maxQty.toLocaleString()}`;
+  document.getElementById('playerIdInput').value = '';
+  updateTotalPrice();
+  new bootstrap.Modal(document.getElementById('productDetailModal')).show();
+}
+
+function changeQty(delta) {
+  const input = document.getElementById('qtyInput');
+  let val = parseInt(input.value) || currentProduct.minQty;
+  val += delta;
+  if (val < currentProduct.minQty) val = currentProduct.minQty;
+  if (val > currentProduct.maxQty) val = currentProduct.maxQty;
+  input.value = val;
+  updateTotalPrice();
+}
+
+function updateTotalPrice() {
+  if (!currentProduct) return;
+  const qty = parseInt(document.getElementById('qtyInput').value) || currentProduct.minQty;
+  const totalUsd = qty * currentProduct.price;
+  const totalSyp = usdToSyp(totalUsd);
+  const unitSyp = usdToSyp(currentProduct.price);
+
+  const unitPriceEl = document.getElementById('unitPriceDisplay');
+  const unitSypEl = document.getElementById('unitSypEquiv');
+  const totalPriceEl = document.getElementById('totalPriceDisplay');
+  const totalSypEl = document.getElementById('totalSypEquiv');
+
+  if (selectedCurrency === 'USD') {
+    unitPriceEl.textContent = currentProduct.price.toFixed(2) + ' $';
+    unitPriceEl.className = 'unit-price-value usd-color';
+    unitSypEl.innerHTML = `≈ <span class="syp-val">${formatSyp(unitSyp)}</span> ل.س`;
+    totalPriceEl.textContent = totalUsd.toFixed(2) + ' $';
+    totalPriceEl.className = 'total-price-value usd-color';
+    totalSypEl.innerHTML = `≈ <span class="syp-val">${formatSyp(totalSyp)}</span> ل.س`;
+  } else {
+    unitPriceEl.textContent = formatSyp(unitSyp) + ' ل.س';
+    unitPriceEl.className = 'unit-price-value syp-color';
+    unitSypEl.innerHTML = `≈ <span class="syp-val">${currentProduct.price.toFixed(2)} $</span>`;
+    totalPriceEl.textContent = formatSyp(totalSyp) + ' ل.س';
+    totalPriceEl.className = 'total-price-value syp-color';
+    totalSypEl.innerHTML = `≈ <span class="syp-val">${totalUsd.toFixed(2)} $</span>`;
+  }
+}
+
+function refreshPriceDisplays() {
+  // Re-render app grid with new rate
+  renderAppGrid();
+  // Update detail modal if open
+  if (currentProduct) updateTotalPrice();
+}
+
+// ========== Payment ==========
+function goToPayment() {
+  if (!currentProduct) return;
+  const playerId = document.getElementById('playerIdInput').value.trim();
+  if (!playerId) {
+    showToast('يرجى إدخال رقم اللاعب (Player ID)');
+    return;
+  }
+
+  const qty = parseInt(document.getElementById('qtyInput').value) || currentProduct.minQty;
+  const totalUsd = qty * currentProduct.price;
+  const totalSyp = usdToSyp(totalUsd);
+
+  document.getElementById('modalProductName').textContent = currentProduct.name;
+  document.getElementById('modalQty').textContent = qty.toLocaleString();
+  document.getElementById('modalPlayerId').textContent = playerId;
+  document.getElementById('modalPriceUsd').textContent = totalUsd.toFixed(2) + ' $';
+  document.getElementById('modalPriceSyp').textContent = formatSyp(totalSyp);
+
+  // Set amounts in payment details
+  document.getElementById('shamUsdAmount').textContent = totalUsd.toFixed(2) + ' $';
+  document.getElementById('shamSypRate').textContent = formatSyp(exchangeRate);
+  document.getElementById('shamSypAmount').textContent = formatSyp(totalSyp);
+  document.getElementById('manualRate').textContent = formatSyp(exchangeRate);
+  document.getElementById('manualAmount').textContent = formatSyp(totalSyp);
+
+  // Reset payment selection
+  selectedPayment = null;
+  ['shamUsdDetails', 'shamSypDetails', 'manualDetails'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  ['shamUsdOpt', 'shamSypOpt', 'manualOpt'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('selected', 'syp-selected');
+  });
+
+  const productModal = bootstrap.Modal.getInstance(document.getElementById('productDetailModal'));
+  if (productModal) productModal.hide();
+
+  setTimeout(() => {
+    new bootstrap.Modal(document.getElementById('purchaseModal')).show();
+  }, 300);
+}
+
+function selectPayment(method) {
+  selectedPayment = method;
+  // Reset all
+  ['shamUsdDetails', 'shamSypDetails', 'manualDetails'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  ['shamUsdOpt', 'shamSypOpt', 'manualOpt'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('selected', 'syp-selected');
+  });
+
+  if (method === 'sham-usd') {
+    document.getElementById('shamUsdOpt').classList.add('selected');
+    document.getElementById('shamUsdDetails').style.display = 'block';
+  } else if (method === 'sham-syp') {
+    document.getElementById('shamSypOpt').classList.add('selected', 'syp-selected');
+    document.getElementById('shamSypDetails').style.display = 'block';
+  } else if (method === 'manual') {
+    document.getElementById('manualOpt').classList.add('selected', 'syp-selected');
+    document.getElementById('manualDetails').style.display = 'block';
+  }
+}
+
+// ========== Copy Text ==========
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('تم النسخ بنجاح!', 'success');
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('تم النسخ بنجاح!', 'success');
+  });
+}
+
+// ========== Toast ==========
+function showToast(message, type = 'info') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast-msg' + (type === 'success' ? ' success' : '');
+  const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+  toast.innerHTML = `<i class="fas ${icon}" style="margin-left:8px;"></i>${message}`;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+// ========== Init ==========
+document.addEventListener('DOMContentLoaded', () => {
+  fetchExchangeRate();
+  renderGameGrid();
+  renderAppGrid();
+});
+</script>
+</body>
+</html>
